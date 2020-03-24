@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.db1.board.domain.BoardVO;
 import com.db1.board.domain.FileVO;
+import com.db1.board.domain.Search;
 
 @Repository("com.db1.board.mapper.BoardMapper")
 public interface BoardMapper {
@@ -25,5 +26,5 @@ public interface BoardMapper {
 	
 	public FileVO fileDetail(int bno) throws Exception;
 
-
+	public List<BoardVO> searchList(String how, String search) throws Exception;
 }

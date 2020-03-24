@@ -20,9 +20,6 @@ $(function(){
 	$('span').html(fruits)
 })
 
-var a = document.getElementById("got");
-alert(a);
-
 </script>
 </head>
 <body>
@@ -30,7 +27,13 @@ alert(a);
 <h2> 目録</h2>
  
 <button class="btn btn-primary" onclick="location.href='/insert'">かきに行きましょう</button>
- 
+<form action="/search" method="get">
+	title<input type="radio" name="how" value="subject">
+	writer<input type="radio" name="how" value="writer">
+	content<input type="radio" name="how" value="content">
+	<input type="text" name="search">
+	<input type="submit" value="検索">	
+</form>
 <div class="container">
     <table class="table table-hover">
         <tr>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.db1.board.domain.BoardVO;
 import com.db1.board.domain.FileVO;
+import com.db1.board.domain.Search;
 import com.db1.board.mapper.BoardMapper;
 
 @Service("com.db1.board.service.BoardService")
@@ -44,6 +45,10 @@ public class BoardService {
 	public FileVO fileDetailService(int bno) throws Exception {
 
 		return mBoardMapper.fileDetail(bno);
+	}
+	
+	public List<BoardVO> searchBoard(String how, String search) throws Exception{
+		return mBoardMapper.searchList(how,search);
 	}
 
 }

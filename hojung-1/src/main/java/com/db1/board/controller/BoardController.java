@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.db1.board.domain.BoardVO;
 import com.db1.board.domain.FileVO;
+import com.db1.board.domain.Search;
 import com.db1.board.service.BoardService;
 
 @Controller
@@ -204,5 +206,19 @@ public class BoardController {
 	@RequestMapping("/test")
 	public String test() {
 		return "test";
+	}
+	
+	@RequestMapping("/search")
+	public String search(String how,String search) throws Exception {
+		System.out.println(how);
+		System.out.println(search);
+		
+		Search newSearch = new Search();
+		newSearch.setHow(how);
+		newSearch.setSearch(search);
+		
+		List<BoardVO> searchBoard = mBoardService.searchBoard(how,search);
+		System.out.println(searchBoard);
+		return "list";
 	}
 }

@@ -72,6 +72,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM BOARD WHERE
 		BNO = #{bno}
 	</delete>
+	
+	<select id="searchList" resultType="com.db1.board.domain.BoardVO" parameterType="String">
+		SELECT * FROM board where #{param1} like '%${param2}%'
 
+	</select>
 </mapper>
 
