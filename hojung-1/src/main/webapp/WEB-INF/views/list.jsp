@@ -8,10 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>List</title>
 <script type="text/javascript">
-/*$(document).ready(function(){
-	alert("dd");
-	$('td#one').css('color','red');
-});*/
 
 $(function(){
 	var fruits = ['사과','pear','banana'];
@@ -20,6 +16,35 @@ $(function(){
 	$('span').html(fruits)
 })
 
+function validate(){
+	alert("no")
+	
+	
+	return;
+}
+//search
+$(document).ready(function(){
+
+	$("#val").click(function(){
+		var how = $('input[name="how"]:checked').val();
+		alert(how)
+		var what = $("#what").val();
+		if(how == ""){
+			alert("検索する場所を選んでください")
+			return;
+		};
+
+		if(what == ""){
+			$("#what").fadeOut().fadeIn().fadeOut().fadeIn().fadeOut().fadeIn().fadeOut().fadeIn();
+			alert("検索内容を書いてください")
+			return;
+		}
+		
+		$("#search").submit();
+		
+		})
+		
+})
 </script>
 </head>
 <body>
@@ -27,12 +52,12 @@ $(function(){
 <h2> 目録</h2>
  
 <button class="btn btn-primary" onclick="location.href='/insert'">かきに行きましょう</button>
-<form action="/search" method="get">
-	title<input type="radio" name="how" value="subject">
-	writer<input type="radio" name="how" value="writer">
-	content<input type="radio" name="how" value="content">
-	<input type="text" name="search">
-	<input type="submit" value="検索">	
+<form action="/search" method="get" id="search">
+	title<input type="radio" name="how" value="subject" id="how" checked="checked" class="result">
+	writer<input type="radio" name="how" value="writer" id="how2" class="result">
+	content<input type="radio" name="how" value="content" id="how3" class="result">
+	<input type="text" name="search" id="what">
+	<input type="button" value="検索" id="val">	
 </form>
 <div class="container">
     <table class="table table-hover">
@@ -54,7 +79,6 @@ $(function(){
     </table>
 </div>
  <h3 id="got" class="gg"></h3>
- 
 <%@ include file="bootstrap.jsp" %>
 </body>
 </html>

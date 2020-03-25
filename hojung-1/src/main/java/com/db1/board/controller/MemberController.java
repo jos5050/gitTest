@@ -49,6 +49,7 @@ public class MemberController {
 		member.setPhoneNum(request.getParameter("phoneNum"));
 		member.setGender(request.getParameter("gender"));
 		System.out.println(member);
+		int a = 1;
 		
 		try {
 			memberService.memberInsert(member);
