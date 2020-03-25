@@ -209,16 +209,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/search")
-	public String search(String how,String search) throws Exception {
-		System.out.println(how);
-		System.out.println(search);
-		
+	public String search(String how,String search,Model model) throws Exception {
 		Search newSearch = new Search();
 		newSearch.setHow(how);
 		newSearch.setSearch(search);
 		
 		List<BoardVO> searchBoard = mBoardService.searchBoard(how,search);
 		System.out.println(searchBoard);
+		
+		model.addAttribute("list", searchBoard);
 		return "list";
 	}
 }
