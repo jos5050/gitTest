@@ -10,6 +10,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -46,9 +47,9 @@ public class BoardController {
 	}
 
 	@RequestMapping("/detail/{bno}") 
-	private ModelAndView boardDetail(@PathVariable int bno) throws Exception{
+	private ModelAndView boardDetail(@PathVariable int bno, HttpSession session) throws Exception{
 	        
-	    
+	    session.setAttribute("bno", bno);
 	    ModelAndView modelAndView = new ModelAndView("detail");
 	    modelAndView.addObject("detail", mBoardService.boardDetailService(bno));
 	    modelAndView.addObject("files", mBoardService.fileDetailService(bno));
@@ -109,10 +110,10 @@ public class BoardController {
     }
 
 	@RequestMapping("/update/{bno}") // 게시글 수정폼 호출
-	private String boardUpdateForm(@PathVariable int bno, Model model) throws Exception {
+	private String boardUpdateForm(@PathVariable int bno, Model model,HttpSession session) throws Exception {
 
 		model.addAttribute("detail", mBoardService.boardDetailService(bno));
-		
+		session.setAttribute("boardid", mBoardService.boardDetailService(bno).getBno());
 		
 		return "update";
 	}
