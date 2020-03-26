@@ -23,7 +23,6 @@ public class MemberController {
 	@GetMapping("/join")
 	public ModelAndView joinPage() {
 		ModelAndView modelAndview = new ModelAndView();
-		
 		modelAndview.setViewName("join");;
 		
 		return modelAndview;
@@ -64,10 +63,10 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(String account, String password, HttpSession session) throws Exception {
 		
-		Member loginMember = memberService.memberLogin(account, password);
-		System.out.println(loginMember);
+		int a = memberService.memberLogin(account, password);
+		System.out.println(a);
 		
-		session.setAttribute("id", loginMember.getId());
+		session.setAttribute("id",account);
 		
 		
 		return "index";

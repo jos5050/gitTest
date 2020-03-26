@@ -9,6 +9,6 @@ public interface MemberMapper {
 	
 	public int memberInsert(Member member) throws Exception;
 	
-	public Member memberLogin(String id, String password) throws Exception;
+	public int memberLogin(String id, String password) throws Exception;
 
 }

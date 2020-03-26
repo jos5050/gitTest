@@ -11,9 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(#{id},#{password},#{address},#{phoneNum},#{gender})
 	</insert>
 	
-	<select id="memberLogin" resultType="com.db1.board.domain.Member">
+	<select id="memberLogin" resultType="int" parameterType="String" >
 	SELECT * FROM MEMBER 
-	WHERE ID=#{id} AND PASSWORD=#{password}
+	WHERE ID=#{param1} AND PASSWORD=#{param2}
 	
 	</select>
 </mapper>

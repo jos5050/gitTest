@@ -16,7 +16,7 @@ public class MemberService {
 		return memberMapper.memberInsert(member);
 	}
 	
-	public Member memberLogin(String id, String password) throws Exception{
+	public int memberLogin(String id, String password) throws Exception{
 		
 		return memberMapper.memberLogin(id, password);
 	}
