@@ -1,14 +1,16 @@
-package com.db1.board.controller;
+ package com.db1.board.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.db1.board.domain.BoardVO;
 import com.db1.board.domain.FileVO;
+import com.db1.board.domain.Search;
 import com.db1.board.service.BoardService;
 
 @Controller
@@ -44,9 +47,9 @@ public class BoardController {
 	}
 
 	@RequestMapping("/detail/{bno}") 
-	private ModelAndView boardDetail(@PathVariable int bno) throws Exception{
+	private ModelAndView boardDetail(@PathVariable int bno, HttpSession session) throws Exception{
 	        
-	    
+	    session.setAttribute("bno", bno);
 	    ModelAndView modelAndView = new ModelAndView("detail");
 	    modelAndView.addObject("detail", mBoardService.boardDetailService(bno));
 	    modelAndView.addObject("files", mBoardService.fileDetailService(bno));
@@ -107,10 +110,10 @@ public class BoardController {
     }
 
 	@RequestMapping("/update/{bno}") // 게시글 수정폼 호출
-	private String boardUpdateForm(@PathVariable int bno, Model model) throws Exception {
+	private String boardUpdateForm(@PathVariable int bno, Model model,HttpSession session) throws Exception {
 
 		model.addAttribute("detail", mBoardService.boardDetailService(bno));
-		
+		session.setAttribute("boardid", mBoardService.boardDetailService(bno).getBno());
 		
 		return "update";
 	}
@@ -204,5 +207,18 @@ public class BoardController {
 	@RequestMapping("/test")
 	public String test() {
 		return "test";
+	}
+	
+	@RequestMapping("/search")
+	public String search(String how,String search,Model model) throws Exception {
+		Search newSearch = new Search();
+		newSearch.setHow(how);
+		newSearch.setSearch(search);
+		
+		List<BoardVO> searchBoard = mBoardService.searchBoard(how,search);
+		System.out.println(searchBoard);
+		
+		model.addAttribute("list", searchBoard);
+		return "list";
 	}
 }
