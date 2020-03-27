@@ -36,9 +36,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         DELETE FROM COMMENT WHERE ID = #{id}
     </delete>
     
-    <select id="likeCount" parameterType="int" resultType="com.db1.board.domain.Like">
-    	select count(memberNum) FROM LIKE
+    <select id="likeCount" parameterType="int" resultType="int">
+    	select count(userName) FROM LIKEIT
     	where bno = #{bno}
     </select>
+    
+    <insert id="likeAdd" parameterType="com.db1.board.domain.Like">
+    	INSERT INTO likeIT(bno,userName) values(#{param1},#{param2})
+    </insert>
 </mapper>
 

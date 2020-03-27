@@ -14,7 +14,7 @@ var writer ;
 
 $(document).ready(function(){
     commentList(); //페이지 로딩시 댓글 목록 출력 
-
+	likeList();
 
      $("#addComment").on('click',(function(){ 
         var insertData = $('[name=commentInsertForm]').serialize();
@@ -28,17 +28,32 @@ $(document).ready(function(){
      
 });
 <%session = request.getSession();%>
-var id = "<%=session.getAttribute("id") %>"
+var id = "<%=session.getAttribute("id")%>"
+function likeList(){
+	$.ajax({
+		url:"/comment/likeCount",
+		type:'post',
+		data:{"bno":${detail.bno},"memberNum":id},
+		success:function(data){
+			var a = '';
+			a +=data;
+			$(".likeCount").html(a);
+			},
+		error:function(){
+			alert("dd")
+			}
+		})
+}
+
+
 function like(){
-	alert(${detail.bno})
-	alert(id)
 
 	$.ajax({
-		url:'/comment/like',
+		url:'/comment/addLike',
 		type:'post',
 		data:{"bno":${detail.bno},"memberNum":id},
 		success: function(){
-			
+			likeList()
 			}
 		})
 	
@@ -163,11 +178,13 @@ function commentInsert(insertData){
 				<label>内容</label>
 				<p>${detail.content}</p>
 			</div>
-			
+
 		</form>
-		<button class="btn-like">👍</button>
+
 		<button type="button" onclick="location.href='/list'"
 			class="btn btn-primary">main</button>
+		<button class="btn-like">👍</button>
+		<span class="likeCount"></span>
 	</div>
 	<div class="container">
 		<label for="content">comment</label>

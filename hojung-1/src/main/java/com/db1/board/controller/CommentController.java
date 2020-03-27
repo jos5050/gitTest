@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.db1.board.domain.Comment;
+import com.db1.board.domain.Like;
 import com.db1.board.mapper.CommentMapper;
 
 @Controller
@@ -26,9 +27,7 @@ public class CommentController {
 	@RequestMapping("/list")
 	@ResponseBody
 	public List<Comment> commnetList(Model model,@RequestParam int boardid) throws Exception{
-		System.out.println(boardid);
 		List<Comment> list = commnetMapper.commentList(boardid);
-		System.out.println(list);
 		return list;
 	}
 	
@@ -42,7 +41,6 @@ public class CommentController {
         comment.setContent(content);
         comment.setDate(LocalDate.now());
         comment.setWriter((String) session.getAttribute("id"));
-        System.out.println(comment);
         int a = commnetMapper.commentInsert(comment);
         System.out.println(a);
 
@@ -71,14 +69,27 @@ public class CommentController {
 		return a;
 	}
 	
-	@PostMapping("/like")
+	@PostMapping("/addLike")
 	@ResponseBody
-	public int contentLike(@RequestParam int bno, @RequestParam String memberNum) throws Exception {
+	public int addLike(@RequestParam int bno, @RequestParam String memberNum) throws Exception {
 		
 			System.out.println(bno+memberNum);
+			int a = commnetMapper.likeAdd(bno, memberNum); 
+			
+			
+		return a;
+	}
+	@PostMapping("/likeCount")
+	@ResponseBody
+	public int likeCount(@RequestParam int bno, @RequestParam String memberNum) throws Exception {
+			
+			Like like = new Like();
+			like.setBno(bno);
+			like.setMemberNum(memberNum);
+			int a = commnetMapper.likeCount(like);
 			
 			
 			
-		return 1;
+		return a;
 	}
 }
