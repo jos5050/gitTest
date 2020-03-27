@@ -1,4 +1,4 @@
-package com.db1.board.controller;
+ package com.db1.board.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
