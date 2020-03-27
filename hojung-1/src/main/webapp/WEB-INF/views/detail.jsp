@@ -10,7 +10,7 @@
 <script type="text/javascript">
 
 var bno = '${bno}'; 
-
+var writer ;
 
 $(document).ready(function(){
     commentList(); //페이지 로딩시 댓글 목록 출력 
@@ -20,8 +20,33 @@ $(document).ready(function(){
         var insertData = $('[name=commentInsertForm]').serialize();
         commentInsert(insertData); 
     }));
+
+
+     $(".btn-like").click(function(){
+     	like();
+     })
      
 });
+<%session = request.getSession();%>
+var id = "<%=session.getAttribute("id") %>"
+function like(){
+	alert(${detail.bno})
+	alert(id)
+
+	$.ajax({
+		url:'/comment/like',
+		type:'post',
+		data:{"bno":${detail.bno},"memberNum":id},
+		success: function(){
+			
+			}
+		})
+	
+}
+
+
+
+
 function commentUpdateProc(id){
 	var updateContent = $('[name=content_'+id+']').val();
 
@@ -99,6 +124,7 @@ function commentInsert(insertData){
     });
 }
 
+
 </script>
 </head>
 <body>
@@ -137,7 +163,9 @@ function commentInsert(insertData){
 				<label>内容</label>
 				<p>${detail.content}</p>
 			</div>
+			
 		</form>
+		<button class="btn-like">👍</button>
 		<button type="button" onclick="location.href='/list'"
 			class="btn btn-primary">main</button>
 	</div>
@@ -158,8 +186,6 @@ function commentInsert(insertData){
 	<div class="container" style="overflow: auto; height: 300px;">
 		<div class="commentList"></div>
 	</div>
-
 	<%@ include file="bootstrap.jsp"%>
 </body>
 </html>
-

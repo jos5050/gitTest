@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -68,5 +69,16 @@ public class CommentController {
 		
 		
 		return a;
+	}
+	
+	@PostMapping("/like")
+	@ResponseBody
+	public int contentLike(@RequestParam int bno, @RequestParam String memberNum) throws Exception {
+		
+			System.out.println(bno+memberNum);
+			
+			
+			
+		return 1;
 	}
 }

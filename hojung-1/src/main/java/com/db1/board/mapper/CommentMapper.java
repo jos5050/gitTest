@@ -19,4 +19,7 @@ public interface CommentMapper {
 	
 	public int commentDelete(int id) throws Exception;
 	
+	public int likeCount(int bno) throws Exception;
+	
+	public int likeAdd(int bno, String memberNum) throws Exception;	
 }
