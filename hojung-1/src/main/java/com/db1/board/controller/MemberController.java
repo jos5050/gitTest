@@ -62,11 +62,20 @@ public class MemberController {
 	
 	@PostMapping("/login")
 	public String login(String account, String password, HttpSession session) throws Exception {
-		
-		int a = memberService.memberLogin(account, password);
+		System.out.println(account+password);
+		int a;
+		try {
+			a = memberService.memberLogin(account, password);
+		} catch (Exception e) {
+			a= 0;
+		}
 		System.out.println(a);
+		if (a!=0) {
+			session.setAttribute("id",account);
+		} else {
+			return "login";
+		}
 		
-		session.setAttribute("id",account);
 		
 		
 		return "index";

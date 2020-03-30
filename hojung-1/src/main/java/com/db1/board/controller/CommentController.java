@@ -88,7 +88,7 @@ public class CommentController {
 			like.setMemberNum(memberNum);
 			int a = commnetMapper.likeCount(like);
 			
-			
+			System.out.println("dd");
 			
 		return a;
 	}
