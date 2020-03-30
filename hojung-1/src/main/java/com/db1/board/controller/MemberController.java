@@ -64,10 +64,10 @@ public class MemberController {
 	public String login(String account, String password, HttpSession session) throws Exception {
 		System.out.println(account+password);
 		int a;
+		a=1;
 		try {
 			a = memberService.memberLogin(account, password);
 		} catch (Exception e) {
-			a= 0;
 		}
 		System.out.println(a);
 		if (a!=0) {

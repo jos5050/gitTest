@@ -74,7 +74,13 @@ public class CommentController {
 	public int addLike(@RequestParam int bno, @RequestParam String memberNum) throws Exception {
 		
 			System.out.println(bno+memberNum);
-			int a = commnetMapper.likeAdd(bno, memberNum); 
+			int a = 0;
+			try {
+				a = commnetMapper.likeAdd(bno, memberNum); 
+			} catch (Exception e) {
+			
+			}
+			
 			
 			
 		return a;

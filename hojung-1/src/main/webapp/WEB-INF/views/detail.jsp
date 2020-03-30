@@ -52,9 +52,13 @@ function like(){
 		url:'/comment/addLike',
 		type:'post',
 		data:{"bno":${detail.bno},"memberNum":id},
-		success: function(){
+		success: function(data){
 			likeList()
-			}
+			if(data==0){
+				$(".btn-like").css('background','red');
+				$(".btn-like").fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
+				}
+			},
 		})
 	
 }
