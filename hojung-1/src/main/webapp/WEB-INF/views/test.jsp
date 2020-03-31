@@ -1,29 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
+<link href="/WEB-INF/views/test.css" rel="stylesheet" type="test/css">
 <meta charset="ISO-8859-1">
+
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script type="text/javascript">
-	function button1_click(s) {
-		alert(s + " 버튼을 누르셨습니다.");
-	}
-	var member = new Object();
+	$(document).ready(function(){
+		$("#masonry-container").masonry({
+			itemSelector:'.item',
+			columnWidth:110
+			})
 
-	member.id = "jos5050";
-	member.password = "1410";
-	member.gender = "male"
-
-	console.log(member);
-
-	$(function() {
-		alert($('#botton1').val())
-	})
+		})
+<%@ include file="/WEB-INF/views/test.js" %>
 </script>
+<style type="text/css">
+*{margin:0px;padding:0px}
+body {
+	background-color: #525252;
+}
+.item {
+	margin:5px;
+	width: 100px; height: 100px;
+	background-color: white; border-radius: 10px;
+	float:left;
+}
+.big {
+	width: 210px; height: 430px;
+}
+.normal {
+	width: 210px; height: 210px;
+}
+.small {
+	width: 100px; height: 100px;
+}
+</style>
 </head>
 <body>
-	<button id="button1" onclick="button1_click('hello');" value="11">버튼1</button>
+<div id="masonry-container">
+	<div class="item small"></div>
+	<div class="item big"></div>
+	<div class="item normal"></div>
+	<div class="item small"></div>
+	<div class="item small"></div>
+	<div class="item small"></div>
+	<div class="item big"></div>
+	<div class="item big"></div>
+	<div class="item small"></div>
+	<div class="item small"></div>
+	<div class="item normal"></div>
+	<div class="item normal"></div>
+	<div class="item small"></div>
+	<div class="item small"></div>
+	<div class="item big"></div>
+</div>
 </body>
 </html>

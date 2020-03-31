@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <delete id="commentDelete" parameterType="int">
         DELETE FROM COMMENT WHERE ID = #{id}
-    </delete>
+    </delete> 
     
     <select id="likeCount" parameterType="int" resultType="int">
     	select count(userName) FROM LIKEIT

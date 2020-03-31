@@ -1,0 +1,14 @@
+$color-dark: #000;
+$color-light: #fff;
+$bg-size-end: 4.2;
+$dur: .3s;
+
+html { box-sizing: border-box; height: 100%; font-size: 10px; } *, *::before, *::after { box-sizing: inherit; }
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #57bd84;
+}

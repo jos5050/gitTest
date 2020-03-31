@@ -31,7 +31,6 @@ public class CommentController {
 		return list;
 	}
 	
-	//다음에 레스트컨트롤러로 실험해보기
 	@RequestMapping("/insert")
 	@ResponseBody
 	public int commentInsert(@RequestParam int bno, @RequestParam String content,HttpSession session) throws Exception{
@@ -94,7 +93,6 @@ public class CommentController {
 			like.setMemberNum(memberNum);
 			int a = commnetMapper.likeCount(like);
 			
-			System.out.println("dd");
 			
 		return a;
 	}

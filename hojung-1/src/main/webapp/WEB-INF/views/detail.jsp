@@ -18,6 +18,7 @@ $(document).ready(function(){
 
      $("#addComment").on('click',(function(){ 
         var insertData = $('[name=commentInsertForm]').serialize();
+        alert(insertData)
         commentInsert(insertData); 
     }));
 
@@ -75,7 +76,7 @@ function commentUpdateProc(id){
 		data:{'content':updateContent,'id':id},
 		success:function(data){
 			if(data==1) commentList(id);
-
+ 
 			}
 		});
 		
@@ -117,13 +118,13 @@ function commentList(){
             $.each(data, function(key, value){ 
                 a += '<div class="commentArea" style="border-bottom:1px solid darkgray; margin-bottom: 15px;">';
                 a += '<div class="commentInfo'+value.id+'">'+'comment番号 : '+value.id+' / 作成者 : '+value.writer;
-                a += '<a onclick="commentUpdate('+value.id+',\''+value.content+'\');">　修正 </a>';
+                a +=  　修正 </a>';
                 a += '<a onclick="commentDelete('+value.id+');"> 削除 </a> </div>';
                 a += '<div class="commentContent'+value.id+'"> <p> 内容 : '+value.content +'</p>';
                 a += '</div></div>';
             });
             
-            $(".commentList").html(a);
+            $(".commentList").html(a); 
         }
     });
 }
