@@ -29,6 +29,12 @@ public class CommentController {
 	public List<Comment> commnetList(Model model,@RequestParam int boardid) throws Exception{
 		List<Comment> list = commnetMapper.commentList(boardid);
 		return list;
+		
+		
+		
+		
+		
+		
 	}
 	
 	@RequestMapping("/insert")
